@@ -72,16 +72,16 @@ public class fyp {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		JMenuBar menubar = new JMenuBar();
 		JMenu menu = new JMenu("File");
-		JMenuItem Reset = new JMenuItem("Reset");
-		Reset.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-				frame.setVisible(false);
-				fyp fyp = new fyp();
-				fyp.initGUIs();
-			}
-		});
-		menu.add(Reset);
+		// JMenuItem Reset = new JMenuItem("Reset");
+		// Reset.addActionListener(new ActionListener() {
+		// public void actionPerformed(ActionEvent e) {
+		//
+		// frame.setVisible(false);
+		// fyp fyp = new fyp();
+		// fyp.initGUIs();
+		// }
+		// });
+		// menu.add(Reset);
 		JMenuItem Credits = new JMenuItem("Credits");
 		Credits.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

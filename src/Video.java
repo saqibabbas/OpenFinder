@@ -164,7 +164,7 @@ public class Video implements Runnable {
 				if (FaceRecognition != null) {
 					Double result = FaceRecognition.RecognizeMat("", ProvidedFace);
 					System.out.println(result);
-					if (result <= 0.08) {
+					if (result <= 0.07) {
 						videobutton.setLabel(extensionRemoved + ".mp4    Found");
 						videobutton.setBackground(Color.green);
 					} else {
