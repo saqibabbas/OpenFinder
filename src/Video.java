@@ -47,7 +47,6 @@ public class Video implements Runnable {
 	@Override
 
 	public void run() {
-
 		VideoCapture capture1 = new VideoCapture(Vname);
 		Mat Imageframe = new Mat();
 		MatOfRect faceDetections = new MatOfRect();
@@ -111,41 +110,41 @@ public class Video implements Runnable {
 
 							eyesdetector.detectMultiScale(Face, eyesDetections);
 
-							if (eyesDetections.toArray().length > 0) {
+							// if (eyesDetections.toArray().length > 0) {
 
-								String full = Fullpath + "/" + extensionRemoved + count + ".png";
-								Imgproc.resize(Face, Face, new Size(125, 150));
+							String full = Fullpath + "/" + extensionRemoved + count + ".png";
+							Imgproc.resize(Face, Face, new Size(125, 150));
 
-								if (ImageCount <= 1) {
-									ImageCount++;
+							if (ImageCount <= 1) {
+								ImageCount++;
 
-									if (ImageCount == 1) {
-										Highgui.imwrite(full, Face);
-										BuildEigenFaces.build(0, Fullpath);
+								if (ImageCount == 1) {
+									Highgui.imwrite(full, Face);
+									BuildEigenFaces.build(0, Fullpath);
 
-									}
-
-									if (ImageCount == 2) {
-										Highgui.imwrite(full, Face);
-										BuildEigenFaces.build(1, Fullpath);
-										FaceRecognition = new FaceRecognition(ImageCount - 1, Fullpath);
-
-									}
-									count++;
-								} else {
-									BuildEigenFaces.build(ImageCount, Fullpath);
-									FaceRecognition = new FaceRecognition(ImageCount - 1, Fullpath);
-									Double result = FaceRecognition.RecognizeMat("", Face);
-									if (result > 0.07) {
-										count++;
-										Highgui.imwrite(full, Face);
-
-										BuildEigenFaces.build(ImageCount, Fullpath);
-										FaceRecognition = new FaceRecognition(ImageCount - 1, Fullpath);
-									}
 								}
 
+								if (ImageCount == 2) {
+									Highgui.imwrite(full, Face);
+									BuildEigenFaces.build(1, Fullpath);
+									FaceRecognition = new FaceRecognition(ImageCount - 1, Fullpath);
+
+								}
+								count++;
+							} else {
+								BuildEigenFaces.build(ImageCount, Fullpath);
+								FaceRecognition = new FaceRecognition(ImageCount - 1, Fullpath);
+								Double result = FaceRecognition.RecognizeMat("", Face);
+								if (result > 0.07) {
+									count++;
+									Highgui.imwrite(full, Face);
+
+									BuildEigenFaces.build(ImageCount, Fullpath);
+									FaceRecognition = new FaceRecognition(ImageCount - 1, Fullpath);
+								}
 							}
+
+							// }
 
 						}
 					}
